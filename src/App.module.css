@@ -1,0 +1,91 @@
+.header {
+  width: 100%;
+  text-align: center;
+  margin-top: 8rem;
+  margin-bottom: 2rem;
+  font-size: 3rem;
+}
+
+.list {
+  margin: 0 auto;
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(1, minmax(0,1fr));
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  background-color: rgba(77, 183, 186, .05);
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.title {
+  margin: 8px;
+  font-size: 1.4rem;
+}
+
+.desc {
+  margin: 0 8px;
+  margin-bottom: auto;
+}
+
+.bottom {
+  margin-top: 8px;
+  padding: 8px;
+  background-color: rgba(77, 183, 186, .1);
+  display: flex;
+  align-items: center;
+}
+
+.authors {
+  flex: 1;
+  padding-right: 4px;
+}
+
+.btn {
+  appearance: none;
+  border-width: 0;
+  color: white;
+  background-color: rgba(10,25,26, .5);
+  padding: 6px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.input {
+  appearance: none;
+  border-width: 0;
+  color: white;
+  background-color: rgba(77, 183, 186, .05);
+  padding: 1rem;
+  font-size: 100%;
+  width: 30rem;
+  outline: none;
+}
+
+.search {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin: 2rem 0;
+}
+
+@media (min-width: 768px) {
+  .list {
+    grid-template-columns: repeat(2, minmax(0,1fr))
+  }
+}
+
+@media (min-width: 1024px) {
+  .list {
+    grid-template-columns: repeat(3, minmax(0,1fr))
+  }
+}
+
+@media (min-width: 1536px) {
+  .list {
+    grid-template-columns: repeat(4, minmax(0,1fr))
+  }
+}

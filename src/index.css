@@ -1,0 +1,9 @@
+html {
+  color: white;
+  background-image: linear-gradient(to bottom, rgba(10,25,26), rgba(7,18,25));
+  font-family: Inter Variable, sans-serif;
+}
+
+body {
+  margin: 1rem 1rem;
+}
