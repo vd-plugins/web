@@ -31,7 +31,7 @@ const getPlugins = () =>
       plugins.reverse()
       .map((p: any) => ({
         ...p,
-        url: new URL(p.url, base).href,
+        url: new URL(p.vendetta.original, base).href,
         fuseAuthor: p.authors.map((a: Author) => a.name).join(", "),
       }))
     );
@@ -53,7 +53,7 @@ const PluginCard: Component<{ manifest: PluginManifest }> = (props) => {
     <div class={styles.desc}>{props.manifest.description}</div>
     <div class={styles.bottom}>
       <div class={styles.authors}>{props.manifest.fuseAuthor}</div>
-      <button class={styles.btn}>Copy link</button>
+      <button onClick={() => navigator.clipboard.writeText(props.manifest.url)} class={styles.btn}>Copy link</button>
     </div>
   </div>;
 };
