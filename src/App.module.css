@@ -47,7 +47,6 @@
 .btn {
   appearance: none;
   border-width: 0;
-  color: white;
   background-color: rgba(10,25,26, .5);
   padding: 6px;
   border-radius: 4px;
@@ -57,7 +56,6 @@
 .input {
   appearance: none;
   border-width: 0;
-  color: white;
   background-color: rgba(77, 183, 186, .05);
   padding: 1rem;
   font-size: 100%;

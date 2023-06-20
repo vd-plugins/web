@@ -1,6 +1,11 @@
 html {
-  color: white;
   background-image: linear-gradient(to bottom, rgba(10,25,26), rgba(7,18,25));
+  min-height: 100vh;
+}
+
+
+* {
+  color: white;
   font-family: Inter Variable, sans-serif;
 }
 
