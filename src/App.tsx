@@ -66,7 +66,7 @@ const App: Component = () => {
   const [search, setSearch] = createSignal(location.hash.slice(1));
 
   createEffect(() => {
-    location.hash = search();
+    history.replaceState(undefined, "", `#${search()}`);
   });
 
   let input: HTMLInputElement | undefined;
