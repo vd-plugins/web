@@ -44,6 +44,14 @@ const fuzzy = <T extends unknown[]>(set: T, search: string) =>
         .search(search)
         .map((searchResult) => searchResult.item) as T);
 
+const debounce = (fn: (...args: any[]) => any, ms = 1000) => {
+  let timeoutId: number;
+  return function (this: any, ...args: any[]) {
+    clearTimeout(timeoutId);
+    timeoutId = setTimeout(() => fn.apply(this, args), ms);
+  };
+};
+
 const PluginCard: Component<{ manifest: PluginManifest }> = (props) => {
   return (
     <div class={styles.card}>
@@ -61,11 +69,11 @@ const PluginCard: Component<{ manifest: PluginManifest }> = (props) => {
 
 const App: Component = () => {
   const [data] = createResource<PluginManifest[]>(getPlugins);
-  const [search, setSearch] = createSignal(location.hash.slice(1));
+  const [search, setSearch] = createSignal(decodeURIComponent(location.hash.slice(1)));
 
-  createEffect(() => {
-    history.replaceState(undefined, "", `#${search()}`);
-  });
+  const updateHash = debounce(() => history.replaceState(undefined, "", `#${encodeURIComponent(search())}`));
+
+  createEffect(() => (search(), updateHash()));
 
   let input: HTMLInputElement | undefined;
   onMount(() => {
