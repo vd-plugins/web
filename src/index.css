@@ -1,8 +1,7 @@
 html {
-  background-image: linear-gradient(to bottom, rgba(10,25,26), rgba(7,18,25));
+  background-image: linear-gradient(to bottom, rgba(10, 25, 26), rgba(7, 18, 25));
   min-height: 100vh;
 }
-
 
 * {
   color: white;
