@@ -52,6 +52,31 @@ const debounce = (fn: (...args: any[]) => any, ms = 1000) => {
   };
 };
 
+async function copyText(str: string) {
+  try {
+   await navigator.clipboard.writeText(str);
+  } catch {
+    const copyArea = document.createElement("textarea");
+
+    // Try our best to hide the element, visibility: hidden makes it break on some browsers.
+    copyArea.style.width = '0';
+    copyArea.style.height = '0';
+    copyArea.style.position = "absolute";
+    copyArea.style.top = `${window.pageYOffset || document.documentElement.scrollTop}px`;
+    copyArea.style.left = "-9999px";
+
+    copyArea.setAttribute("readonly", "");
+    copyArea.value = str;
+
+    document.body.appendChild(copyArea);
+    copyArea.focus();
+    copyArea.select();
+
+    document.execCommand("copy");
+    document.body.removeChild(copyArea);
+  }
+}
+
 const PluginCard: Component<{ manifest: PluginManifest }> = (props) => {
   return (
     <div class={styles.card}>
@@ -59,7 +84,7 @@ const PluginCard: Component<{ manifest: PluginManifest }> = (props) => {
       <div class={styles.desc}>{props.manifest.description}</div>
       <div class={styles.bottom}>
         <div class={styles.authors}>{props.manifest.authors.map((a: Author) => a.name).join(", ")}</div>
-        <button onClick={() => navigator.clipboard.writeText(props.manifest.url)} class={styles.btn}>
+        <button onClick={() => copyText(props.manifest.url)} class={styles.btn}>
           Copy link
         </button>
       </div>
@@ -72,7 +97,6 @@ const App: Component = () => {
   const [search, setSearch] = createSignal(decodeURIComponent(location.hash.slice(1)));
 
   const updateHash = debounce(() => history.replaceState(undefined, "", `#${encodeURIComponent(search())}`));
-
   createEffect(() => (search(), updateHash()));
 
   let input: HTMLInputElement | undefined;
